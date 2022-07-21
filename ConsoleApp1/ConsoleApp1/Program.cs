@@ -8,9 +8,26 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var numbers = new int[] { 1, 2, 3, 55, 200, 500, 700 };
-            Console.WriteLine(IsAny(numbers, number => number > 100));
+            DefferedExecution();
             Console.ReadKey();
+        }
+
+        public static void DefferedExecution()
+        {
+            var animals = new List<string>() { "Duck", "Lion", "Dolphin", "Tiger" };
+
+            var animalsWithD = animals.Where(
+                animal =>
+                {
+                    Console.WriteLine("Checking animal: " + animal);
+                    return animal.StartsWith("D");
+                }
+            );
+
+            foreach (var animal in animalsWithD)
+            {
+                Console.WriteLine(animal);
+            }
         }
 
         private static bool IsAny<T>(
