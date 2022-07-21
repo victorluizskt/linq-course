@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -10,8 +8,22 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(FunctionInFunction(IsDog, "Cat"));
+            var numbers = new int[] { 1, 2, 3, 55, 200, 500, 700 };
+            Console.WriteLine(IsAny(numbers, number => number > 100));
             Console.ReadKey();
+        }
+
+        private static bool IsAny<T>(
+            IEnumerable<T> source,
+            Func<T, bool> predicate
+        )
+        {
+            foreach(var element in source)
+            {
+                if (predicate(element)) return true;
+            }
+
+            return false;
         }
 
         public static bool FunctionInFunction(Func<string, bool> predicate, string param1)
